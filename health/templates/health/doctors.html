@@ -1,0 +1,39 @@
+{% extends 'health/base.html' %}
+
+{% block content %}
+
+<h2 class="title">
+    <i class="fa-solid fa-user-doctor"></i>
+    Available Doctors
+</h2>
+
+<div class="cards">
+    {% for d in doctors %}
+    <div class="card">
+        <h3>{{ d.name }}</h3>
+        <p><strong>Specialization:</strong> {{ d.spec }}</p>
+        <p><strong>Experience:</strong> {{ d.exp }} Years</p>
+
+        <p><strong>Consultation Hours:</strong> {{ d.hours }}</p>
+
+        <p><strong>Status:</strong> 
+            {% if d.availability == "Available" %}
+                <span class="available">{{ d.availability }}</span>
+            {% else %}
+                <span class="not-available">{{ d.availability }}</span>
+            {% endif %}
+        </p>
+
+        {% if d.availability == "Available" %}
+            <a href="{% url 'appointment' d.name d.spec %}">
+                <button class="book-btn">Book Appointment</button>
+            </a>
+        {% else %}
+            <button class="disabled-btn" disabled>Not Available</button>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

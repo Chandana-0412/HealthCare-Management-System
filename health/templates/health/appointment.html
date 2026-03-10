@@ -1,0 +1,30 @@
+{% extends 'health/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="title">Book Appointment</h2>
+
+<form method="POST" class="appointment-form">
+    {% csrf_token %}
+
+    <label>Patient Name</label>
+    <input type="text" name="patient_name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Doctor Name</label>
+    <input type="text" name="doctor" value="{{ doctor_name }}" readonly>
+
+    <label>Specialization</label>
+    <input type="text" name="specialization" value="{{ specialization }}" readonly>
+
+    <label>Appointment Date</label>
+    <input type="date" name="date" required>
+
+    <label>Appointment Time</label>
+    <input type="time" name="time" required>
+
+    <button type="submit">Confirm Appointment</button>
+</form>
+{% endblock %}

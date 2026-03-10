@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Confirmed</title>
+    <link rel="stylesheet" href="{% static 'health/style.css' %}">
+</head>
+<body>
+
+<div class="success-container">
+    <div class="success-card">
+        <h2>Appointment Confirmed ✅</h2>
+        <p>Confirmation email has been sent to your registered email.</p>
+        <p><b>Patient Name:</b> {{ patient }}</p>
+        <p><b>Doctor:</b> {{ doctor }}</p>
+        <p><b>Date:</b> {{ date }}</p>
+        <p><b>Time:</b> {{ time }}</p>
+
+        <a href="{% url 'doctors' %}">
+            <button class="back-btn">Back to Doctors</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
+

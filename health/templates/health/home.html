@@ -1,0 +1,148 @@
+{% extends 'health/base.html' %}
+{% block content %}
+
+<div class="home-bg">
+    <h1>Welcome to Healthcare Management System</h1>
+    <p>Your complete digital healthcare solution</p>
+
+    <div class="btn-group">
+        <a href="{% url 'register' %}" class="btn">Register</a>
+        <a href="{% url 'login' %}" class="btn">Login</a>
+    </div>
+</div>
+
+<!-- WHY HEALTHCARE SECTION -->
+<section class="why-healthcare">
+    <h2>Why Healthcare Management System?</h2>
+
+    <div class="why-cards">
+        <div class="why-card">
+            <h3>Centralized System</h3>
+            <p>All patient, doctor and appointment data in one secure platform.</p>
+        </div>
+
+        <div class="why-card">
+            <h3>Time Efficient</h3>
+            <p>Automates hospital operations and reduces manual paperwork.</p>
+        </div>
+
+        <div class="why-card">
+            <h3>Better Patient Care</h3>
+            <p>Improves communication between patients and healthcare providers.</p>
+        </div>
+
+        <div class="why-card">
+            <h3>Secure Records</h3>
+            <p>Patient data is protected with authentication and role-based access.</p>
+        </div>
+    </div>
+</section>
+<!-- KEY FEATURES SECTION -->
+<div class="features-section">
+    <h2 class="sec">Our Key Features</h2>
+    <p class="features-sub">
+        Everything you need to manage healthcare efficiently
+    </p>
+
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <span class="feature-icon">🗂</span>
+            <h3>Patient Records</h3>
+            <p>Securely store & access patient medical history anytime</p>
+        </div>
+
+        <div class="feature-card reveal">
+            <span class="feature-icon">📅</span>
+            <h3>Appointments</h3>
+            <p>Easy online appointment booking & scheduling</p>
+        </div>
+
+        <div class="feature-card reveal">
+            <span class="feature-icon">👨‍⚕️</span>
+            <h3>Doctor Management</h3>
+            <p>Manage doctors, departments & availability</p>
+        </div>
+
+        <div class="feature-card reveal">
+            <span class="feature-icon">🔔</span>
+            <h3>Alerts & Notifications</h3>
+            <p>Instant updates for appointments & reports</p>
+        </div>
+    </div>
+</div>
+<!-- How It Works Section -->
+<section class="how-it-works" id="how-it-works">
+    <h2 class="tit">How It Works</h2>
+    <div class="steps-container">
+        <div class="step-card">
+            <div class="step-number">1️⃣</div>
+            <div class="step-title">User Registers</div>
+            <div class="step-desc">Patient creates an account to access healthcare services.</div>
+        </div>
+        <div class="step-card">
+            <div class="step-number">2️⃣</div>
+            <div class="step-title">Login</div>
+            <div class="step-desc">User logs in securely to the system using their credentials.</div>
+        </div>
+        <div class="step-card">
+            <div class="step-number">3️⃣</div>
+            <div class="step-title">Book Appointment / Manage Records</div>
+            <div class="step-desc">Patient can book appointments, view medical history, and manage records.</div>
+        </div>
+        
+    </div>
+</section>
+<section class="cta-section">
+    <h2 >Get Started Today</h2>
+    <p>Join our digital healthcare system and simplify hospital management.</p>
+
+    <div class="cta-buttons">
+        <a href="{% url 'register' %}" class="btn primary">Register</a>
+        <a href="{% url 'login' %}" class="btn primary">Login</a>
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer-container">
+
+        <h3>HealthCare Management System</h3>
+
+        <p>Email: support@healthcare.com</p>
+        <p>Phone: +91 98765 43210</p>
+
+        <hr>
+
+        <p class="copyright">
+            © 2026 HealthCare Management System. All Rights Reserved.
+        </p>
+
+    </div>
+</footer>
+
+
+<div class="cards">
+    {% for d in doctors %}
+    <div class="card">
+        <h3>{{ d.name }}</h3>
+        <p>Specialization: {{ d.spec }}</p>
+        <p>Experience: {{ d.exp }} Years</p>
+
+        <p>Consultation Hours: {{ d.hours }}</p>
+        <p>Status: 
+            {% if d.availability == "Available" %}
+                <span class="available">{{ d.availability }}</span>
+            {% else %}
+                <span class="not-available">{{ d.availability }}</span>
+            {% endif %}
+        </p>
+
+        <a href="{% url 'appointment' d.name d.spec %}">
+            <button>Book Appointment</button>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

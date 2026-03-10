@@ -1,0 +1,34 @@
+{% extends 'health/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-container">
+    <h2 class="tip">Register</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+        {% if error %}
+        <p style="color:red">{{ error }}</p>
+        {% endif %}
+    </form>
+
+    <p>Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+</div>
+
+{% endblock %}
